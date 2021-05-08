@@ -32,5 +32,9 @@ func main() {
 		c.String(http.StatusOK, "pong")
 	})
 
+	router.GET("/error", func(c *gin.Context) {
+		panic("Error")
+	})
+
 	router.Run(":8080")
 }
