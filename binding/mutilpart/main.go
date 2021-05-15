@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 )
 
 type ProfileForm struct {
@@ -18,7 +17,7 @@ func main() {
 	router.POST("/profile", func(c *gin.Context) {
 		var form ProfileForm
 
-		if err := c.ShouldBindWith(&form, binding.Form); err != nil {
+		if err := c.ShouldBind(&form); err != nil {
 			c.String(http.StatusBadRequest, "Bad Request")
 			return
 		}
@@ -30,6 +29,7 @@ func main() {
 		}
 
 		c.String(http.StatusOK, "ok")
-		router.Run(":8080")
+
 	})
+	router.Run(":8080")
 }
