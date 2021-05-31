@@ -14,7 +14,7 @@ var secrets = gin.H{
 
 func main() {
 	r := gin.Default()
-
+	print(gin.AuthUserKey)
 	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
